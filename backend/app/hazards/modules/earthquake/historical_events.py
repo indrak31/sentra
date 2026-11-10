@@ -1,0 +1,66 @@
+"""Verified historical earthquake events in India for scientific ground-truthing and GMPE validation."""
+
+from typing import List
+from app.hazards.base import HistoricalEvent
+from app.schemas.risk_assessment import HazardType
+
+VERIFIED_EARTHQUAKE_EVENTS: List[HistoricalEvent] = [
+    HistoricalEvent(
+        event_id="EQ-HIST-2001-GJ",
+        event_name="Bhuj Destructive Intraplate Earthquake",
+        event_year=2001,
+        hazard_type=HazardType.EARTHQUAKE,
+        state_code="GJ",
+        state_name="Gujarat",
+        district_name="Kutch (Bhuj)",
+        start_date="2001-01-26",
+        severity="CRITICAL",
+        peak_metric_name="Peak Ground Acceleration (PGA)",
+        peak_metric_value=0.38,
+        peak_metric_unit="g",
+        estimated_exposed_population=2100000,
+        reported_fatalities=20005,
+        economic_loss_inr_cr=21000.0,
+        description="A major 7.7 Mw intraplate thrust earthquake along South Wagad Fault caused extreme shaking (MMI X), destroying thousands of masonry buildings across Kutch and Ahmedabad.",
+        data_source="National Centre for Seismology (NCS) / Geological Survey of India (GSI) Special Publication No. 76",
+    ),
+    HistoricalEvent(
+        event_id="EQ-HIST-1999-UK",
+        event_name="Chamoli Himalayan Thrust Earthquake",
+        event_year=1999,
+        hazard_type=HazardType.EARTHQUAKE,
+        state_code="UK",
+        state_name="Uttarakhand",
+        district_name="Chamoli",
+        start_date="1999-03-29",
+        severity="HIGH",
+        peak_metric_name="Peak Ground Acceleration (PGA)",
+        peak_metric_value=0.22,
+        peak_metric_unit="g",
+        estimated_exposed_population=350000,
+        reported_fatalities=103,
+        economic_loss_inr_cr=450.0,
+        description="A 6.8 Mw earthquake located along the Main Central Thrust (MCT) in Garhwal Himalayas caused widespread hillside collapses and localized destruction in Chamoli and Rudraprayag.",
+        data_source="India Meteorological Department (IMD) Seismological Bulletin / IIT Roorkee Department of Earthquake Engineering",
+    ),
+    HistoricalEvent(
+        event_id="EQ-HIST-2011-SK",
+        event_name="Sikkim-Nepal Border Earthquake",
+        event_year=2011,
+        hazard_type=HazardType.EARTHQUAKE,
+        state_code="SK",
+        state_name="Sikkim",
+        district_name="North Sikkim",
+        start_date="2011-09-18",
+        severity="HIGH",
+        peak_metric_name="Peak Ground Acceleration (PGA)",
+        peak_metric_value=0.18,
+        peak_metric_unit="g",
+        estimated_exposed_population=500000,
+        reported_fatalities=111,
+        economic_loss_inr_cr=1200.0,
+        description="Strike-slip 6.9 Mw earthquake in deep Himalayan crust triggered extensive secondary co-seismic landslides cutting off arterial highways.",
+        data_source="National Disaster Management Authority (NDMA) Post-Earthquake Geotechnical Mission Report",
+    ),
+]
+

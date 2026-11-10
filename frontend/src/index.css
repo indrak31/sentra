@@ -1,0 +1,573 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  body {
+    background-color: #F8FAFC;
+    color: #0F172A;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+/* Custom Tactical Clean Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Leaflet Container & Canvas */
+.leaflet-container {
+  background-color: #deebf7 !important;
+  font-family: inherit !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  border-radius: 12px !important;
+}
+
+.leaflet-popup-tip-container {
+  display: none !important;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  line-height: inherit !important;
+}
+
+.leaflet-bar a {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #334155 !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.leaflet-bar a:hover {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+/* Custom Radar Ping */
+@keyframes radar-pulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  70% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.radar-ping {
+  animation: radar-pulse 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* ── Stitch Surface Panels ────────────────────────────────────────────── */
+.sentra-panel {
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+}
+
+.sentra-panel-accent {
+  position: relative;
+}
+
+.sentra-panel-accent::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 14px;
+  right: 14px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #0284c7, transparent);
+  border-radius: 2px;
+}
+
+/* ── Basemap Treatments ─────────────────────────────────────────── */
+.sentra-satellite-tiles {
+  filter: saturate(0.85) brightness(0.9) contrast(1.05);
+}
+
+.sentra-satellite-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 350;
+  pointer-events: none;
+  background: rgba(14, 165, 233, 0.04);
+}
+
+.maplibregl-ctrl-attrib {
+  display: none !important;
+}
+
+/* ── Incident / Resource Markers ─────────────────────────────────────────── */
+.sentra-incident-marker {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sentra-incident-core {
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 2.5px solid var(--hazard-color, #f43f5e);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--hazard-color, #f43f5e) 60%, transparent), 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.sentra-incident-ping {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: var(--hazard-color, #f43f5e);
+  opacity: 0.28;
+  animation: sentra-ping 1.9s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes sentra-ping {
+  0% {
+    transform: scale(0.45);
+    opacity: 0.45;
+  }
+  80%,
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+.sentra-resource-marker {
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border: 1.5px solid var(--resource-color, #0284c7);
+  color: var(--resource-color, #0284c7);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12), 0 0 6px color-mix(in srgb, var(--resource-color, #0284c7) 35%, transparent);
+}
+
+.sentra-resource-marker svg {
+  width: 14px;
+  height: 14px;
+}
+
+.sentra-hazard-halo {
+  filter: blur(7px);
+}
+
+/* ── Region Pin ──────────────────────────────────────────────────────────── */
+.sentra-region-pin {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+  transform: translate(-4px, -4px);
+}
+
+.sentra-region-pin-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 9999px;
+  background: #0284c7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.25), 0 0 12px rgba(2, 132, 199, 0.85);
+  flex: 0 0 auto;
+}
+
+.sentra-region-pin--sky .sentra-region-pin-dot {
+  background: #0ea5e9;
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.25), 0 0 12px rgba(14, 165, 233, 0.8);
+}
+
+.sentra-region-pin-label {
+  white-space: nowrap;
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid #bae6fd;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(4px);
+  color: #0369a1;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.sentra-region-pin--sky .sentra-region-pin-label {
+  border-color: #bae6fd;
+  color: #0284c7;
+}
+
+/* ── Map HUD Controls ────────────────────────────────────────────────────── */
+.sentra-view-switch {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px;
+  border-radius: 9999px;
+  border: 1px solid #e2e8f0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+.sentra-view-switch__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  transition: all 160ms ease;
+}
+
+.sentra-view-switch__btn:hover {
+  color: #0f172a;
+}
+
+.sentra-view-switch__btn.is-active {
+  background: #0f172a;
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.sentra-map-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  border: 1px solid #e2e8f0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  color: #1e293b;
+  font-size: 11px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 160ms ease;
+}
+
+.sentra-map-pill:hover {
+  border-color: #cbd5e1;
+  background: #ffffff;
+}
+
+.sentra-map-controls {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.sentra-map-controls button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: #475569;
+  border-bottom: 1px solid #f1f5f9;
+  transition: all 150ms ease;
+}
+
+.sentra-map-controls button:last-child {
+  border-bottom: none;
+}
+
+.sentra-map-controls button:hover {
+  background: #f8fafc;
+  color: #0284c7;
+}
+
+.sentra-map-source {
+  position: absolute;
+  right: 8px;
+  bottom: 4px;
+  z-index: 1000;
+  max-width: 60%;
+  text-align: right;
+  pointer-events: none;
+  font-size: 9px;
+  line-height: 1.3;
+  color: #64748b;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 639px) {
+  .sentra-map-source {
+    display: none;
+  }
+}
+
+/* ── Map Popups, Tooltips & Labels ───────────────────────────────────────── */
+.sentra-popup-card {
+  min-width: 240px;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.12), 0 8px 10px -6px rgba(15, 23, 42, 0.06);
+}
+
+.leaflet-popup-content-wrapper {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.leaflet-popup-close-button {
+  color: #94a3b8 !important;
+  padding: 8px 8px 0 0 !important;
+}
+
+.leaflet-popup-close-button:hover {
+  color: #0f172a !important;
+}
+
+.leaflet-tooltip.sentra-geo-tooltip {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #e2e8f0;
+  color: #0f172a;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 4px 8px;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+.leaflet-tooltip-top.sentra-geo-tooltip::before {
+  border-top-color: #e2e8f0;
+}
+
+.leaflet-tooltip.sentra-district-label {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: #0369a1;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.95), 0 0 8px rgba(255, 255, 255, 0.9);
+  padding: 0;
+}
+
+.leaflet-tooltip.sentra-district-label::before {
+  display: none;
+}
+
+/* ── Stitch Command Shell & Chrome ───────────────────────────────────────── */
+.sentra-app-shell {
+  position: relative;
+  isolation: isolate;
+  background-color: #f3f6fa;
+  min-height: 100vh;
+}
+
+.sentra-sidebar-glass {
+  isolation: isolate;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(16px);
+  border-right: 1px solid #e2e8f0 !important;
+  box-shadow: 1px 0 4px rgba(0, 0, 0, 0.02);
+}
+
+.sentra-sidebar-backdrop {
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(4px);
+}
+
+.sentra-nav-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #64748b;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0 8px;
+  margin-top: 12px;
+  margin-bottom: 6px;
+}
+
+.sentra-nav-section::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #e2e8f0;
+}
+
+.sentra-nav-item {
+  position: relative;
+  color: #475569;
+  background: transparent;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 150ms ease;
+}
+
+.sentra-nav-item:hover {
+  color: #0f172a;
+  background: #f1f5f9;
+}
+
+.sentra-nav-item.is-active,
+.sentra-nav-item.is-active:hover {
+  color: #0284c7;
+  font-weight: 600;
+  background: #e0f2fe;
+}
+
+.sentra-nav-icon {
+  color: #64748b;
+  transition: color 150ms ease;
+}
+
+.sentra-nav-item:hover .sentra-nav-icon {
+  color: #0f172a;
+}
+
+.sentra-nav-item.is-active .sentra-nav-icon {
+  color: #0284c7;
+}
+
+.sentra-header-glass {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid #e2e8f0 !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
+}
+
+.sentra-header-brand-mark {
+  background: linear-gradient(135deg, #0284c7, #2563eb);
+  border: 1px solid #38bdf8;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
+}
+
+.sentra-header-title {
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.sentra-header-subtitle {
+  color: #94a3b8;
+}
+
+.sentra-ops-badge {
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
+}
+
+.sentra-header-icon-btn {
+  color: #64748b;
+  border-radius: 8px;
+  padding: 8px;
+  transition: all 150ms ease;
+}
+
+.sentra-header-icon-btn:hover {
+  color: #0f172a;
+  background: #f1f5f9;
+}
+
+.sentra-header-divider {
+  border-left: 1px solid #e2e8f0 !important;
+}
+
+.sentra-header-avatar {
+  background: #0284c7;
+  border: 1px solid #38bdf8;
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.sentra-header-name {
+  color: #0f172a;
+}
+
+.sentra-header-role {
+  color: #64748b;
+}
+
+.sentra-scope-chip {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.sentra-scope-label {
+  color: #64748b;
+}
+
+.sentra-scope-value {
+  color: #0f172a;
+}
+
+.sentra-scope-switch {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+}
+
+.sentra-scope-btn {
+  color: #64748b;
+  transition: all 160ms ease;
+}
+
+.sentra-scope-btn:hover {
+  color: #0f172a;
+  background: #e2e8f0;
+}
+
+.sentra-scope-btn.is-active,
+.sentra-scope-btn.is-active:hover {
+  background: #ffffff;
+  color: #0284c7;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}

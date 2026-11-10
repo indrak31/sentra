@@ -1,0 +1,66 @@
+"""Verified historical flood disaster events in India for scientific ground-truthing and baseline validation."""
+
+from typing import List
+from app.hazards.base import HistoricalEvent
+from app.schemas.risk_assessment import HazardType
+
+VERIFIED_FLOOD_EVENTS: List[HistoricalEvent] = [
+    HistoricalEvent(
+        event_id="FL-HIST-2023-AS",
+        event_name="Brahmaputra Basin Severe Monsoon Inundation",
+        event_year=2023,
+        hazard_type=HazardType.FLOOD,
+        state_code="AS",
+        state_name="Assam",
+        district_name="Kamrup Metropolitan",
+        start_date="2023-06-16",
+        severity="HIGH",
+        peak_metric_name="Peak River Level over Danger Mark",
+        peak_metric_value=1.42,
+        peak_metric_unit="meters",
+        estimated_exposed_population=480000,
+        reported_fatalities=18,
+        economic_loss_inr_cr=640.0,
+        description="Heavy continuous pre-monsoon precipitation across upper Assam and Arunachal foothills triggered catastrophic river overflow in Brahmaputra and Kopili tributaries.",
+        data_source="Assam State Disaster Management Authority (ASDMA) Situation Report Archive 2023 / CWC",
+    ),
+    HistoricalEvent(
+        event_id="FL-HIST-2018-KL",
+        event_name="Great Kerala Floods of 2018",
+        event_year=2018,
+        hazard_type=HazardType.FLOOD,
+        state_code="KL",
+        state_name="Kerala",
+        district_name="Ernakulam",
+        start_date="2018-08-08",
+        severity="CRITICAL",
+        peak_metric_name="Catchment 72h Cumulative Precipitation",
+        peak_metric_value=810.0,
+        peak_metric_unit="mm",
+        estimated_exposed_population=5400000,
+        reported_fatalities=483,
+        economic_loss_inr_cr=31000.0,
+        description="Unprecedented torrential rainfall resulting from deep monsoon depression combined with simultaneous dam reservoir gate openings across Periyar and Chalakudy basins.",
+        data_source="Central Water Commission (CWC) Post-Event Hydrological Assessment Report 2018",
+    ),
+    HistoricalEvent(
+        event_id="FL-HIST-2005-MH",
+        event_name="Mumbai Cloudburst and Mithi River Deluge",
+        event_year=2005,
+        hazard_type=HazardType.FLOOD,
+        state_code="MH",
+        state_name="Maharashtra",
+        district_name="Mumbai City",
+        start_date="2005-07-26",
+        severity="CRITICAL",
+        peak_metric_name="24-Hour Precipitation",
+        peak_metric_value=944.2,
+        peak_metric_unit="mm",
+        estimated_exposed_population=8500000,
+        reported_fatalities=1094,
+        economic_loss_inr_cr=4500.0,
+        description="Extreme meso-scale convective cloudburst over Mumbai coinciding with high tidal surge, incapacitating storm drainage infrastructure.",
+        data_source="Government of Maharashtra Fact Finding Committee on Mumbai Floods (Chitale Committee Report)",
+    ),
+]
+

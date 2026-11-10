@@ -1,0 +1,66 @@
+"""Verified historical drought disaster events in India for scientific ground-truthing and baseline validation."""
+
+from typing import List
+from app.hazards.base import HistoricalEvent
+from app.schemas.risk_assessment import HazardType
+
+VERIFIED_DROUGHT_EVENTS: List[HistoricalEvent] = [
+    HistoricalEvent(
+        event_id="DR-HIST-2015-MH",
+        event_name="Marathwada Severe Agrarian Drought & Water Crisis",
+        event_year=2015,
+        hazard_type=HazardType.DROUGHT,
+        state_code="MH",
+        state_name="Maharashtra",
+        district_name="Latur / Beed (Marathwada)",
+        start_date="2015-08-01",
+        severity="CRITICAL",
+        peak_metric_name="Rainfall Monsoon Deficit",
+        peak_metric_value=-52.4,
+        peak_metric_unit="percent",
+        estimated_exposed_population=7200000,
+        reported_fatalities=0,
+        economic_loss_inr_cr=14500.0,
+        description="Consecutive failure of southwest monsoons depleted major dams (Jayakwadi, Manjara) below dead storage levels, necessitating emergency 'Jaldoot' railway water tankers to Latur city.",
+        data_source="Government of Maharashtra Department of Relief and Rehabilitation / IMD Pune Climate Diagnostic Report",
+    ),
+    HistoricalEvent(
+        event_id="DR-HIST-2018-RJ",
+        event_name="Western Rajasthan Desert Drought",
+        event_year=2018,
+        hazard_type=HazardType.DROUGHT,
+        state_code="RJ",
+        state_name="Rajasthan",
+        district_name="Jaisalmer",
+        start_date="2018-07-15",
+        severity="HIGH",
+        peak_metric_name="Consecutive Dry Days",
+        peak_metric_value=68.0,
+        peak_metric_unit="days",
+        estimated_exposed_population=1850000,
+        reported_fatalities=0,
+        economic_loss_inr_cr=3200.0,
+        description="Extreme dry spell with high summer evapotranspiration destroyed rain-fed kharif crops (bajra, guar) and caused acute livestock fodder shortages across the Thar desert periphery.",
+        data_source="Central Arid Zone Research Institute (CAZRI) Jodhpur Drought Advisory Bulletin",
+    ),
+    HistoricalEvent(
+        event_id="DR-HIST-2019-UP",
+        event_name="Bundelkhand Hydrological Drought",
+        event_year=2019,
+        hazard_type=HazardType.DROUGHT,
+        state_code="UP",
+        state_name="Uttar Pradesh",
+        district_name="Banda / Mahoba (Bundelkhand)",
+        start_date="2019-05-10",
+        severity="HIGH",
+        peak_metric_name="Standardized Precipitation Index (SPI-6)",
+        peak_metric_value=-2.15,
+        peak_metric_unit="index",
+        estimated_exposed_population=3100000,
+        reported_fatalities=0,
+        economic_loss_inr_cr=2800.0,
+        description="Deep groundwater drawdown exceeding 8 meters in hard-rock aquifers rendered traditional dug wells and handpumps dry across rural hamlets before monsoon onset.",
+        data_source="National Disaster Management Authority (NDMA) & Central Ground Water Board (CGWB) Bundelkhand Aquifer Atlas",
+    ),
+]
+

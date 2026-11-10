@@ -1,0 +1,7 @@
+context_reconciliation_status,source_id,catalog_title,candidate_link_rows,unique_events,year_agreements,state_agreements,district_text_agreements
+YEAR_AND_STATE_CONTEXT_CANDIDATE_ONLY,SRC-ASDMA-DAILY-2023-06-01,Daily Flood Report — 01 June 2023,12,12,12,12,12
+YEAR_AND_STATE_CONTEXT_CANDIDATE_ONLY,SRC-ASDMA-DAILY-2023-06-22,Daily Flood Report — 22 June 2023,12,12,12,12,12
+YEAR_AND_STATE_CONTEXT_CANDIDATE_ONLY,SRC-ASDMA-FEWS-2023,Flood Early Warning System Archive — 2023,12,12,12,12,12
+YEAR_AND_STATE_CONTEXT_CANDIDATE_ONLY,SRC-ASDMA-FLOOD-MEMO-2023,Assam Flood Memorandum 2023,12,12,12,12,12
+YEAR_AND_STATE_CONTEXT_CANDIDATE_ONLY,SRC-ASDMA-STORM-2023,Storm Damaged Report Archive — 2023,12,12,12,12,12
+YEAR_AND_STATE_CONTEXT_CANDIDATE_ONLY,SRC-NRSC-ASSAM-2023-06-22,Mapping and Monitoring of Flood Situation in Assam State during 2023,12,12,12,12,12
